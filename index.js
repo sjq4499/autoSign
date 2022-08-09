@@ -6,7 +6,6 @@ let [cookie, user, pass, to] = process.argv.slice(2);
 process.env.user = user;
 process.env.pass = pass;
 let score = 0;
-console.log(cookie, user, pass, to);
 const headers = {
   "content-type": "application/json; charset=utf-8",
   "user-agent":
@@ -63,7 +62,7 @@ const drawFn = async () => {
       credentials: "include",
     }
   ).then((res) => res.json());
-
+  // {"err_no":0,"err_msg":"success","data":true}
   if (today_status.err_no !== 0) return Promise.reject("签到失败！");
   if (today_status.data) return Promise.resolve("今日已经签到！");
 
@@ -135,5 +134,4 @@ const lucky = async () => {
       body: JSON.stringify({ lottery_history_id: "7052109119238438925" }),
     }
   ).then((res) => res.json());
-  console.log(res, "llll");
 };
